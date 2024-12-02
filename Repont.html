@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webáruház</title>
+    <link rel="stylesheet" href="puul.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <img src="szürke.png" alt="50Ft">
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="banner">
+            <h1>Üdvözöljük a Webáruházunkban!</h1>
+            <p>Vásároljon minőségi termékeket kedvező áron.</p>
+        </section>
+
+        <section class="products">
+            <h2>Ajánlott termékek</h2>
+            <div class="product-card">
+                <img src="pulcsi fehér.png" alt="Fehér pulcsi-5.500Ft">
+                <h3>Fehér pulcsi</h3>
+                <p class="price">5.500 Ft</p>
+                <div class="product">
+                    <button onclick="addToCart('Fehér pulcsi-5.500Ft ⚪')">Kosárba rakom</button>
+                  </div>
+            </div>
+            <div class="product-card">
+                <img src="pulcsi piros.png" alt="pulcsi piros">
+                <h3>Piros pulcsi</h3>
+                <p class="price">6.000 Ft</p>
+                <button onclick="addToCart('pulcsi piros -6.000Ft 🔴', 1000)">Kosárba rakom</button>
+            </div>
+            <div class="product-card">
+                <img src="pulcsi fekete.png" alt="pulcsi fekete">
+                <h3>fekete pulcsi</h3>
+                <p class="price">6.500 Ft</p>
+                <button onclick="addToCart('pulcsi fekete -6.500Ft ⚫', 1000)">Kosárba rakom</button>
+            </div>
+        </section>
+
+        <section class="footer">
+            <p>&copy; 2024 Webáruház. Minden jog fenntartva.</p>
+        </section>
+    </main>
+
+
+
+        
+    <div id="cart">
+        <h2>Kosár</h2>
+        <ul id="cart-items">
+          <!-- Kosár tartalma itt jelenik meg -->
+        </ul>
+        <button onclick="viewCart()">Kosár megtekintése</button>
+        <br>
+        <!-- Vásárlás gomb -->
+        <button onclick="purchase()">
+            <div class="container">
+              <div class="left-side">
+                <div class="card">
+                  <div class="card-line"></div>
+                  <div class="buttons"></div>
+                </div>
+                <div class="post">
+                  <div class="post-line"></div>
+                  <div class="screen">
+                    <div class="dollar">$</div>
+                  </div>
+                  <div class="numbers"></div>
+                  <div class="numbers-line2"></div>
+                </div>
+              </div>
+              <div class="right-side">
+                <div class="new">Checkout</div>
+              </div>
+            </div>
+            </button>
+      </div>
+    
+      <script>
+        // Kosárba tett termékek tárolása
+        let cart = [];
+    
+        // Termékek hozzáadása a kosárhoz
+        function addToCart(productName) {
+          cart.push(productName);  // Hozzáadjuk a terméket a kosárhoz
+          alert(productName + ' hozzáadva a kosárhoz!');  // Értesítés a termék hozzáadásáról
+        }
+    
+        // Kosár frissítése
+        function viewCart() {
+          let cartItems = document.getElementById('cart-items');
+          cartItems.innerHTML = '';  // Először töröljük a kosár tartalmát
+    
+          if (cart.length === 0) {
+            cartItems.innerHTML = '<li>A kosár üres.</li>';
+          } else {
+            cart.forEach(item => {
+              let li = document.createElement('li');
+              li.textContent = item;  // Kosár eleme
+              cartItems.appendChild(li);  // Kosárba hozzáadott elem
+            });
+          }
+        }
+    
+        // Vásárlás funkció
+        function purchase() {
+          if (cart.length === 0) {
+            alert('A kosár üres! Kérlek, adj hozzá terméket.');
+          } else {
+            // Itt átirányítjuk a felhasználót egy új oldalra
+            // Példa: átirányítás a "checkout.html" oldalra
+            window.location.href = "checkout.html";
+          }
+        }
+      </script>
+    
+</body>
+</html>
